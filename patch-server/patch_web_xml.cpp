@@ -122,9 +122,9 @@ std::string get_settings_field_string(const fs::path& settings_file,
     return get_settings_field_raw(settings_file, field, default_value);
 }
 
-static bool get_root_settings_bool(const char* name)
+static bool get_root_settings_bool(const char* name, const bool default_value = false)
 {
-    return get_settings_field_bool(ROOT_XML_PATH, name);
+    return get_settings_field_bool(ROOT_XML_PATH, name, default_value);
 }
 
 bool apply_patch_diagnostic_enabled()
@@ -139,5 +139,5 @@ bool apply_120hz_enabled()
 
 bool pop_up_browser_enabled()
 {
-    return get_root_settings_bool("pop_up_browser");
+    return get_root_settings_bool("pop_up_browser", true);
 }
