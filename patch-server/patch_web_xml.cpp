@@ -136,3 +136,8 @@ bool apply_120hz_enabled()
 {
     return get_root_settings_bool("apply_120hz_videoout");
 }
+
+bool pop_up_browser_enabled()
+{
+    return get_root_settings_bool("pop_up_browser");
+}

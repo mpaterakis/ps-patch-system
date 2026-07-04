@@ -1224,6 +1224,7 @@ struct patch_web_context
     {
         add_setting("apply_patch_diagnostic", "Patch Diagnostic", "Enable verbose notification during patching process", SettingType::Bool, "0");
         add_setting("apply_120hz_videoout", "Patch VideoOut for 120hz", "Patches libSceVideoOut for 120hz", SettingType::Bool, "0");
+        add_setting("pop_up_browser", "Pop Up Browser", "Automatically opens the browser when injecting the payload", SettingType::Bool, "1");
     }
 
     void run(const std::string& root, int p)
@@ -1270,7 +1271,7 @@ struct patch_web_context
             snprintf(url, _countof_1(url), "http://127.0.0.1:%d", port);
             notify(ELF_NAME ": serving at %s, xml root %s\n", url, root.c_str());
             static bool shown = false;
-            if (!shown)
+            if (!shown && pop_up_browser_enabled())
             {
                 sceUserServiceInitialize(0);
                 sceSystemServiceLaunchWebBrowser(url, 0);
